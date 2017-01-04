@@ -1,0 +1,180 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Share image along with caption on WhatsApp</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=868fb95cc6">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://localhost:2368/share-image-along-with-caption-on-whatsapp/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Subhrajyoti Sen">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Share image along with caption on WhatsApp">
+    <meta property="og:description" content="So I came across this question on StackOverflow asking how one can share an image on WhatsApp along with a caption. Before the question could be answered, two users incorrectly marked it as a duplicate.  So I thought of sharing my answer here so that it can help out others.">
+    <meta property="og:url" content="http://localhost:2368/share-image-along-with-caption-on-whatsapp/">
+    <meta property="article:published_time" content="2017-01-04T11:04:56.949Z">
+    <meta property="article:modified_time" content="2017-01-04T11:04:56.948Z">
+    <meta property="article:publisher" content="https://www.facebook.com/subhrajyoti.sen">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Share image along with caption on WhatsApp">
+    <meta name="twitter:description" content="So I came across this question on StackOverflow asking how one can share an image on WhatsApp along with a caption. Before the question could be answered, two users incorrectly marked it as a duplicate.  So I thought of sharing my answer here so that it can help out others.">
+    <meta name="twitter:url" content="http://localhost:2368/share-image-along-with-caption-on-whatsapp/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Subhrajyoti Sen">
+    <meta name="twitter:site" content="@iamsubhrajyoti">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Subhrajyoti Sen",
+        "logo": "http://localhost:2368/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Subhrajyoti Sen",
+        "url": "http://localhost:2368/author/subhrajyoti/",
+        "sameAs": []
+    },
+    "headline": "Share image along with caption on WhatsApp",
+    "url": "http://localhost:2368/share-image-along-with-caption-on-whatsapp/",
+    "datePublished": "2017-01-04T11:04:56.949Z",
+    "dateModified": "2017-01-04T11:04:56.948Z",
+    "description": "So I came across this question on StackOverflow asking how one can share an image on WhatsApp along with a caption. Before the question could be answered, two users incorrectly marked it as a duplicate.  So I thought of sharing my answer here so that it can help out others."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.8">
+    <link rel="alternate" type="application/rss+xml" title="Subhrajyoti Sen" href="http://localhost:2368/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="https://subhrajyotisen.github.io/blog/">Home</a></li>
+            <li class="nav-about" role="presentation"><a href="http://subhrajyotisen.github.io">About</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://localhost:2368/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Share image along with caption on WhatsApp</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2017-01-04">04 January 2017</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>So I came across this question on <a href="http://stackoverflow.com/questions/41461267/how-to-share-text-and-image-to-whatsapp-from-my-app">StackOverflow</a> asking how one can share an image on WhatsApp along with a caption. Before the question could be answered, two users incorrectly marked it as a duplicate. </p>
+
+<p>So I thought of sharing my answer here so that it can help out others.</p>
+
+<p>We start by creating an ACTION_SEND Intent since the Intent sends data <br>
+<code>Intent intent = new Intent();
+intent.setAction(Intent.ACTION_SEND);</code></p>
+
+<p>We set the Intent type to image since we are primarily sending an image <br>
+ <code>intent.setType("image/*");</code></p>
+
+<p>The main part comes now. We need to specify in our Intent that it is meant for WhatsApp only. We can do this by specifying the package name through the setPackage() method <br>
+<code>intent.setPackage("com.whatsapp");</code></p>
+
+<p>Now we need to specify the image and message to be shared. We specify an URI to the required image. <br>
+<code>intent.putExtra(Intent.EXTRA_STREAM,Uri.parse("file:///sdcard/wa.jpeg"));
+intent.putExtra(Intent.EXTRA_TEXT, your_message);</code></p>
+
+<p>And finally, fire up the Intent. <br>
+<code>startActivity(i);</code></p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/subhrajyoti/">Subhrajyoti Sen</a></h4>
+
+                    <p>Read <a href="../author/subhrajyoti/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Share%20image%20along%20with%20caption%20on%20WhatsApp&amp;url=http://localhost:2368/share-image-along-with-caption-on-whatsapp/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/share-image-along-with-caption-on-whatsapp/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/share-image-along-with-caption-on-whatsapp/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev no-cover" href="../2016-a-year-in-review/">
+        <section class="post">
+            <h2>2016: a year in review</h2>
+            <p>I have never really done a year in review before. The reason being that I never had a year…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://localhost:2368">Subhrajyoti Sen</a> © 2017</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=868fb95cc6"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=868fb95cc6"></script>
+
+</body>
